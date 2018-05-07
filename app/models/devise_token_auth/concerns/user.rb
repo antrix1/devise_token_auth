@@ -109,6 +109,8 @@ module DeviseTokenAuth::Concerns::User
     protected
 
     def tokens_has_json_column_type?
+       return true # Quick and dirty to debug Postgres on CI
+      
       database_exists? && table_exists? && self.columns_hash['tokens'] && self.columns_hash['tokens'].type.in?([:json, :jsonb])
     end
 
